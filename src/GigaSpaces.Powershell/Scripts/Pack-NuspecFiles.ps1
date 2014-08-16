@@ -6,7 +6,6 @@ if([string]::IsNullOrWhiteSpace($xapVersion) -or [string]::IsNullOrWhiteSpace($x
 	exit
 }
 
-
 $nuspecFile = "../Nuget/GigaSpaces.Core.nuspec"
 
 log "info" $([string]::Format("################## Packing XAP.NET {0} Nuget Specification Files ##################",$xapVersion))
