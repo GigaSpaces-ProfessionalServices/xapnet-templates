@@ -1,0 +1,11 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>GigaSpaces.Core</id>
+    <version></version>
+    <authors>GigaSpaces Technologies Inc.</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+        XAP.NET is an in memory data grid for .NET
+    </description>
+  </metadata>
+</package>
