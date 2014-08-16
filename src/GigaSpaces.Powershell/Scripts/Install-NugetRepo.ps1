@@ -10,6 +10,12 @@ if([string]::IsNullOrWhiteSpace($xapVersion) -or [string]::IsNullOrWhiteSpace($x
 	exit
 }
 
+$xapNugetFolder = $([string]::Format("{0}\nuget\", $xapPath))
+
+if(![System.IO.Directory]::Exists($xapNugetFolder)){
+	new-item $xapNugetFolder -itemtype directory
+}
+
 $nuGetConfigFile = $env:APPDATA + "\Nuget\Nuget.config"
 
 log "info" $([string]::Format("################## Installing XAP.NET {0} Nuget Repository ##################",$xapVersion))
@@ -26,7 +32,7 @@ $nuGetDocument = [System.Xml.XmlDocument](Get-Content $nuGetConfigFile)
 
 $newRepositoryElement = $nuGetDocument.CreateElement("add")
 $newRepositoryElement.SetAttribute("key", $([string]::Format("GigaSpaces XAP.NET {0}", $xapVersion)))
-$newRepositoryElement.SetAttribute("value", $xapPath)
+$newRepositoryElement.SetAttribute("value", $xapNugetFolder)
 
 $nuGetDocument.configuration.packagesources.AppendChild($newRepositoryElement)
 $nuGetDocument.Save($nuGetConfigFile)

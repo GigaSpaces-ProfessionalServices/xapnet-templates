@@ -36,3 +36,5 @@ $xmlDoc.package.AppendChild($files)
 $xmlDoc.Save($qualifiedPath);
 
 ../tools/nuget.exe pack $nuspecFile
+
+Copy-Item $qualifiedPath $([string]::Format("{0}\nuget\", $xapPath))
