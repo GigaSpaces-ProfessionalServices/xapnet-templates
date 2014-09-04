@@ -34,9 +34,18 @@ $newRepositoryElement = $nuGetDocument.CreateElement("add")
 $newRepositoryElement.SetAttribute("key", $([string]::Format("GigaSpaces XAP.NET {0}", $xapVersion)))
 $newRepositoryElement.SetAttribute("value", $xapNugetFolder)
 
-$nuGetDocument.configuration.packagesources.AppendChild($newRepositoryElement)
+$packageSources = $nuGetDocument.configuration.packagesources;
+
+if($packageSources -eq $null){
+	log "info" "Creating packagesources XML element."
+	$packageSources = $nuGetDocument.CreateElement("packagesources")
+	$nuGetDocument.configuration.AppendChild($packageSources)
+}
+
+$packageSources.AppendChild($newRepositoryElement)
 $nuGetDocument.Save($nuGetConfigFile)
 
+# TODO: Stop this from logging successful every time.
 log "info" "Update successfully completed!"
 
  
