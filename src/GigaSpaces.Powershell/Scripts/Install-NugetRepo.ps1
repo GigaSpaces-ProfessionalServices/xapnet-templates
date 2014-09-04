@@ -38,7 +38,7 @@ $packageSources = $nuGetDocument.configuration.packagesources;
 
 if($packageSources -eq $null){
 	log "info" "Creating packagesources XML element."
-	$packageSources = $nuGetDocument.CreateElement("packagesources")
+	$packageSources = $nuGetDocument.CreateElement("packageSources")
 	$nuGetDocument.configuration.AppendChild($packageSources)
 }
 
