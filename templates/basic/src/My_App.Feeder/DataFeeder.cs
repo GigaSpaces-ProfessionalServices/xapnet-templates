@@ -9,8 +9,6 @@ namespace My_App.Feeder
     {
         private static readonly ILog Logger = LogManager.GetLogger("feeder");
 
-        private static readonly Random Random = new Random();
-
         public static void Main(string[] applicationArguments)
         {
             Arguments arguments;
@@ -18,20 +16,27 @@ namespace My_App.Feeder
 
             var spaceProxy = GigaSpacesFactory.FindSpace(arguments.SpaceUrl);
 
+            CreateAndWriteRecords(arguments, spaceProxy);
+            Logger.InfoFormat("Finished writing {0} record(s) successfully.", arguments.ItemsToAdd);
+        }
 
+        private static void CreateAndWriteRecords(Arguments arguments, ISpaceProxy spaceProxy)
+        {
             var records = new Datum[arguments.ItemsToAdd];
             Logger.InfoFormat("Writing {0} record(s) to the space.", arguments.ItemsToAdd);
 
-            for(uint x = 0; x < (arguments.ItemsToAdd - 1) ;x++)
+            for (uint x = 0; x < (arguments.ItemsToAdd - 1); x++)
             {
-                var datum = new Datum {Content = new byte[Random.Next()], LastUpdatedUtc = DateTime.UtcNow, RouteId = Convert.ToInt32(x) };
-                Random.NextBytes(datum.Content);
+                var datum = new Datum
+                {
+                    LastUpdatedUtc = DateTime.UtcNow,
+                    RouteId = Convert.ToInt32(x)
+                };
 
                 records[x] = datum;
             }
 
             spaceProxy.WriteMultiple(records, WriteModifiers.OneWay);
-            Logger.InfoFormat("Finished writing {0} record(s) successfully.", arguments.ItemsToAdd);
         }
 
         private static bool Initialize(string[] applicationArguments, out Arguments arguments)
@@ -57,28 +62,29 @@ namespace My_App.Feeder
 
             return isValidInitialization;
         }
-    }
 
-    public class Arguments
-    {
-        public string SpaceUrl { get; private set; }
-
-        public uint ItemsToAdd { get; private set; }
-
-        public void Parse(string[] applicationArguments)
+        private class Arguments
         {
-            try
-            {
-                SpaceUrl = applicationArguments[0];
-                ItemsToAdd = uint.Parse(applicationArguments[1]);
-                AreInvalid = true;
-            }
-            catch
-            {
-                AreInvalid = false;
-            }
-        }
+            public string SpaceUrl { get; private set; }
 
-        public bool AreInvalid { get; private set; }
+            public uint ItemsToAdd { get; private set; }
+
+            public void Parse(string[] applicationArguments)
+            {
+                try
+                {
+                    SpaceUrl = applicationArguments[0];
+                    ItemsToAdd = uint.Parse(applicationArguments[1]);
+                    AreInvalid = true;
+                }
+                catch
+                {
+                    AreInvalid = false;
+                }
+            }
+
+            public bool AreInvalid { get; private set; }
+        }
     }
+
 }
