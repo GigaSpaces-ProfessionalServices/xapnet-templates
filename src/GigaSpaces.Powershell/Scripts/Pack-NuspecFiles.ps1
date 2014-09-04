@@ -7,6 +7,7 @@ if([string]::IsNullOrWhiteSpace($xapVersion) -or [string]::IsNullOrWhiteSpace($x
 }
 
 $nuspecFile = "../Nuget/GigaSpaces.Core.nuspec"
+$nugetPackage = $([string]::Format("GigaSpaces.Core.{0}.nupkg", $xapVersion))
 
 log "info" $([string]::Format("################## Packing XAP.NET {0} Nuget Specification Files ##################",$xapVersion))
 log "info" $([string]::Format("NuGet Specification File: {0}", $nuspecFile))
@@ -37,4 +38,8 @@ $xmlDoc.Save($qualifiedPath);
 
 ../tools/nuget.exe pack $nuspecFile
 
-Copy-Item $qualifiedPath $([string]::Format("{0}\nuget\", $xapPath))
+log "info" $([string]::Format("Copying file {0} to nuget repository.", $nugetPackage)) 
+Copy-Item $nugetPackage $([string]::Format("{0}\nuget\", $xapPath))
+
+log "info" "Removing temporary package file."
+Remove-Item $nugetPackage
