@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using GigaSpaces.Core;
 using GigaSpaces.XAP.Events;
 using GigaSpaces.XAP.Events.Polling;
@@ -9,26 +10,22 @@ namespace My_App.Processor
     [PollingEventDriven]
     public class DataProcessor
     {
-        [EventTemplate]
-        public SqlQuery<Datum> UnprocessedData
-        {
-            get
-            {
-                var templateQuery = new SqlQuery<Datum>("Content = null");
+        private const int WorkDuration = 100;
 
-                return templateQuery;
-            }
+        [EventTemplate]
+        public Data UnprocessedData
+        {
+            get { return new Data {IsProcessed = false}; }
         }
 
         [DataEventHandler]
-        public Datum CreateData(Datum datum)
+        public Data CreateData(Data data)
         {
-            var random = new Random();
-            datum.Content = new byte[random.Next()];
-            random.NextBytes(datum.Content);
-            datum.LastUpdatedUtc = DateTime.UtcNow;
+            Thread.Sleep(WorkDuration);
+            data.Content = string.Format("PROCESSED: {0}", data.RawContent);
+            data.IsProcessed = true;
 
-            return datum;
+            return data;
         }
     }
 }

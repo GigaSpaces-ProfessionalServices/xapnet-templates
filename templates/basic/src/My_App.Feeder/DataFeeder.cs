@@ -1,6 +1,7 @@
 ﻿using System;
 using GigaSpaces.Core;
 using log4net;
+using log4net.Config;
 using My_App.Entities;
 
 namespace My_App.Feeder
@@ -11,8 +12,15 @@ namespace My_App.Feeder
 
         public static void Main(string[] applicationArguments)
         {
+            XmlConfigurator.Configure();
+
             Arguments arguments;
-            if (Initialize(applicationArguments, out arguments)) return;
+            if (!Initialize(applicationArguments, out arguments))
+            {
+                Logger.Info("Press a key to exit.");
+                Console.ReadKey();
+                return;
+            }
 
             var spaceProxy = GigaSpacesFactory.FindSpace(arguments.SpaceUrl);
 
@@ -22,15 +30,16 @@ namespace My_App.Feeder
 
         private static void CreateAndWriteRecords(Arguments arguments, ISpaceProxy spaceProxy)
         {
-            var records = new Datum[arguments.ItemsToAdd];
+            var records = new Data[arguments.ItemsToAdd];
             Logger.InfoFormat("Writing {0} record(s) to the space.", arguments.ItemsToAdd);
 
             for (uint x = 0; x < (arguments.ItemsToAdd - 1); x++)
             {
-                var datum = new Datum
+                var datum = new Data
                 {
-                    LastUpdatedUtc = DateTime.UtcNow,
-                    RouteId = Convert.ToInt32(x)
+                    IsProcessed = false,
+                    RawContent = string.Format("FEEDER: {0}", DateTime.UtcNow.Ticks),
+                    Type = Convert.ToInt64(x)
                 };
 
                 records[x] = datum;
@@ -48,16 +57,16 @@ namespace My_App.Feeder
 
             Logger.Info("Starting Data Feeder...");
 
-            if (arguments.AreInvalid)
+            if (arguments.Invalid)
             {
                 Logger.Error("Invalid command structure.");
                 Logger.Error("My_App.Feeder.exe <space-url> <items-to-add>");
-                isValidInitialization = true;
             }
             else
             {
                 Logger.InfoFormat("Space Url: {0}", arguments.SpaceUrl);
-                Logger.InfoFormat("Items to add: {0}", arguments.ItemsToAdd);             
+                Logger.InfoFormat("Items to add: {0}", arguments.ItemsToAdd);
+                isValidInitialization = true;
             }
 
             return isValidInitialization;
@@ -75,15 +84,15 @@ namespace My_App.Feeder
                 {
                     SpaceUrl = applicationArguments[0];
                     ItemsToAdd = uint.Parse(applicationArguments[1]);
-                    AreInvalid = true;
+                    Invalid = false;
                 }
                 catch
                 {
-                    AreInvalid = false;
+                    Invalid = true;
                 }
             }
 
-            public bool AreInvalid { get; private set; }
+            public bool Invalid { get; private set; }
         }
     }
 

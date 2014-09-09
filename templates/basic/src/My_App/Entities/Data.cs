@@ -4,16 +4,18 @@ using GigaSpaces.Core.Metadata;
 namespace My_App.Entities
 {
     [SpaceClass]
-    public class Datum
+    public class Data
     {
         [SpaceID(AutoGenerate = true)]
         public string Id { get; set; }
 
         [SpaceRouting]
-        public int RouteId { get; set; }
+        public long Type { get; set; }
 
-        public byte[] Content { get; set; }
+        public string RawContent { get; set; }
 
-        public DateTime LastUpdatedUtc { get; set; }
+        public string Content { get; set; }
+
+        public bool? IsProcessed { get; set; }
     }
 }
