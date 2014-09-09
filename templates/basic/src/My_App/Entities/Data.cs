@@ -10,7 +10,7 @@ namespace My_App.Entities
         public string Id { get; set; }
 
         [SpaceRouting]
-        public long Type { get; set; }
+        public long? Type { get; set; }
 
         public string RawContent { get; set; }
 

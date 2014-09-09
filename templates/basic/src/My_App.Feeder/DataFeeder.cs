@@ -33,7 +33,7 @@ namespace My_App.Feeder
             var records = new Data[arguments.ItemsToAdd];
             Logger.InfoFormat("Writing {0} record(s) to the space.", arguments.ItemsToAdd);
 
-            for (uint x = 0; x < (arguments.ItemsToAdd - 1); x++)
+            for (uint x = 0; x < arguments.ItemsToAdd; x++)
             {
                 var datum = new Data
                 {
