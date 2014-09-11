@@ -13,20 +13,18 @@ namespace My_App.PuDebugExecuter
     "Press enter to start the processing units and press enter again to stop the processing units");
             Console.ReadLine();
 
-            ClusterInfo primaryClusterInfo = new ClusterInfo("partitioned-sync2backup", 1, null, 1, 1);
-            ClusterInfo backupClusterInfo = new ClusterInfo("partitioned-sync2backup", 1, 1, 1, 1);
+            var primaryClusterInfo = new ClusterInfo("partitioned-sync2backup", 1, null, 1, 1);
+            var backupClusterInfo = new ClusterInfo("partitioned-sync2backup", 1, 1, 1, 1);
 
-            String deployPath = Path.GetFullPath(@"..\..\..\Deploy");
-            ProcessingUnitContainerHost primaryProcessorContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "stockprocessor"), primaryClusterInfo, null);
-            ProcessingUnitContainerHost backupProcessorContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "stockprocessor"), backupClusterInfo, null);
-            ProcessingUnitContainerHost mirrorContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "stockmirror"), null, null);
-            ProcessingUnitContainerHost feederContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "stockfeeder"), null, null);
+            var deployPath = Path.GetFullPath(@"..\");
+            var primaryProcessorContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "processor"), primaryClusterInfo, null);
+            var backupProcessorContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "processor"), backupClusterInfo, null);
+            var feederContainerHost = new ProcessingUnitContainerHost(Path.Combine(deployPath, "feeder"), null, null);
 
             Console.ReadLine();
             feederContainerHost.Dispose();
             backupProcessorContainerHost.Dispose();
             primaryProcessorContainerHost.Dispose();
-            mirrorContainerHost.Dispose();
         }
     }
 }
