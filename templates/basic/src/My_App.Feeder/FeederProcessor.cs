@@ -24,7 +24,7 @@ namespace My_App.Feeder
         [ContainerInitialized]
         public void Initialize(BasicProcessingUnitContainer container)
         {
-            _proxy = container.GetSpaceProxy("stock");
+            _proxy = container.GetSpaceProxy("myApp");
             _config = new FeederConfiguration(container.Properties);
             _continueFeeding = true;
 
