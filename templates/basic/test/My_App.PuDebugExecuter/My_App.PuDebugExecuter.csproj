@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>0b975a67-bbec-4d6e-b72b-1368e39d3b73</ProjectGuid>
+    <ProjectGuid>{01032B6D-E13D-40FC-8325-E614907DAB44}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>My_App.PuDebugExecuter</RootNamespace>
@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GigaSpaces.Core">
+      <HintPath>..\..\packages\GigaSpaces.Core.10.0.0.0\lib\GigaSpaces.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GigaSpaces.NetToJava">
+      <HintPath>..\..\packages\GigaSpaces.Core.10.0.0.0\lib\GigaSpaces.NetToJava.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
