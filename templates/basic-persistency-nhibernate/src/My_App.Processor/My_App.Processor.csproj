@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="pu.config" />
+    <None Include="pu.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Configuration\nHibernate\CreateTablesNHibernate.cfg.xml">
@@ -65,7 +67,9 @@
       <Link>nHibernate\nHibernate.cfg.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="sla.xml" />
+    <Content Include="sla.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\My_App\My_App.csproj">

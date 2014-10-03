@@ -23,7 +23,7 @@ namespace My_App.Feeder
         [ContainerInitialized]
         public void Initialize(BasicProcessingUnitContainer container)
         {
-            _proxy = container.GetSpaceProxy("myApp");
+            _proxy = container.GetSpaceProxy("My_App");
             _config = new FeederConfiguration(container.Properties);
             _continueFeeding = true;
 
@@ -98,6 +98,7 @@ namespace My_App.Feeder
             for (int i = 0; i < fills.Length; i++)
             {
                 var fill = new Data();
+                fill.Id = i.ToString();
                 fill.Type = Convert.ToInt64(rnd.Next());
                 fill.RawContent = "FEEDER: " + DateTime.UtcNow.Ticks;
                 fill.IsProcessed = false;

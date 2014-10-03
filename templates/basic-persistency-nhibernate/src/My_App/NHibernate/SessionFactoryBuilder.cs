@@ -1,6 +1,7 @@
 using System.IO;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace My_App.NHibernate
 {
@@ -20,7 +21,7 @@ namespace My_App.NHibernate
             {
                 string absoluteHibernateFile = System.Environment.ExpandEnvironmentVariables(hibernateFile);
                 absoluteHibernateFile = Path.GetFullPath(absoluteHibernateFile);                
-                Configuration config = Configure(new Configuration(), absoluteHibernateFile);
+                Configuration config = Configure(new Configuration(), absoluteHibernateFile); 
                 if (!System.String.IsNullOrEmpty(connectionString))
                     config.SetProperty(Environment.ConnectionString, connectionString);                	            
                 if (!System.String.IsNullOrEmpty(hbmDirectory))
