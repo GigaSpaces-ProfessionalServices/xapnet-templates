@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="fe5638d8-2b2d-4d78-90a5-738ec355d751" Version="1.0" Language="en-US" Publisher="Gigaspaces" />
+    <DisplayName>Gigaspaces basic project template</DisplayName>
+    <Description>Template for basic XAP project</Description>
+  </Metadata>
+  <Installation InstalledByMsi="false">
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0,13.0]" />
+    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.Premium" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.12.0" DisplayName="Visual Studio MPF 12.0" d:Source="Installed" Version="[12.0]" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="ProjectTemplates\RenameWizard.dll" AssemblyName="RenameWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a2f96109fd23b947" d:VsixSubPath="ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\MultiprojectBasic.zip" />
+  </Assets>
+</PackageManifest>
