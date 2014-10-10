@@ -1,0 +1,44 @@
+<VSTemplate Version="2.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Gigaspaces NHibernate persistency project</Name>
+    <Description>Gigaspaces NHibernate persistency project</Description>
+    <DefaultName>NHibernatePersistencyPuProject</DefaultName>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    <CreateInPlace>true</CreateInPlace>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <ProjectTemplateLink ProjectName="$safeprojectname$">
+        My_AppTemplateName\MyTemplate.vstemplate
+      </ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$safeprojectname$.Feeder">
+        My_App.FeederTemplateName\MyTemplate.vstemplate
+      </ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$safeprojectname$.Processor">
+        My_App.ProcessorTemplateName\MyTemplate.vstemplate
+      </ProjectTemplateLink>
+	  <ProjectTemplateLink ProjectName="$safeprojectname$.Mirror">
+        My_App.MirrorTemplateName\MyTemplate.vstemplate
+      </ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$safeprojectname$.PuDebugExecuter">
+        My_App.PuDebugExecuterTemplateName\MyTemplate.vstemplate
+      </ProjectTemplateLink>
+    </ProjectCollection>
+<Project>
+	<ProjectItem>
+        Configuration\nHibernate\CreateTablesNHibernate.cfg.xml
+	</ProjectItem>
+	<ProjectItem>
+        Configuration\nHibernate\Data.hbm.xml
+	</ProjectItem>
+	<ProjectItem>
+        Configuration\nHibernate\nHibernate.cfg.xml
+	</ProjectItem>
+</Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>RenameWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a2f96109fd23b947</Assembly>
+    <FullClassName>RenameWizard.RootWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

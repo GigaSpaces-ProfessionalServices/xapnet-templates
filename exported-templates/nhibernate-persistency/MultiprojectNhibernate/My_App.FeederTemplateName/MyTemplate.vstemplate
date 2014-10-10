@@ -1,0 +1,31 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>My_App.FeederTemplateName</Name>
+    <Description>My_App.FeederTemplateName description</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>My_App.FeederTemplateName</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="My_App.Feeder.csproj" File="My_App.Feeder.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="FeederConfiguration.cs">FeederConfiguration.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FeederProcessor.cs">FeederProcessor.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="pu.config">pu.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>RenameWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a2f96109fd23b947</Assembly>
+    <FullClassName>RenameWizard.ChildWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="My_App" namespace="My_App.Entities">
+    <class name="My_App.Entities.Data" table="Data">
+		    <id name="Id" type="string" >
+            <column name="Id" />
+            <generator class="assigned" />
+        </id>
+        <property name="Type" />
+        <property name="RawContent" />
+        <property name="Content" />
+        <property name="IsProcessed" />
+    </class>
+</hibernate-mapping>

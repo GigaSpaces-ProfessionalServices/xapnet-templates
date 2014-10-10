@@ -1,0 +1,39 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>My_AppTemplateName</Name>
+    <Description>My_AppTemplateName description</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>My_AppTemplateName</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="My_App.csproj" File="My_App.csproj" ReplaceParameters="true">
+      <Folder Name="Entities" TargetFolderName="Entities">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Data.cs">Data.cs</ProjectItem>
+      </Folder>
+      <Folder Name="NHibernate" TargetFolderName="NHibernate">
+        <Folder Name="Enumerator" TargetFolderName="Enumerator">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ConcurrentMultiDataEnumerator.cs">ConcurrentMultiDataEnumerator.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NHibernateDataEnumerator.cs">NHibernateDataEnumerator.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="NHibernateExternalDataSource.cs">NHibernateExternalDataSource.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SessionFactoryBuilder.cs">SessionFactoryBuilder.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>RenameWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a2f96109fd23b947</Assembly>
+    <FullClassName>RenameWizard.ChildWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
